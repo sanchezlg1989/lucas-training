@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plan de Entrenamiento — Lucas Sanchez</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <div class="header-meta">
+        <span class="pill">Mesociclo 1</span>
+        <span class="pill">Fuerza de Base</span>
+      </div>
+      <h1>LUCAS<br>SANCHEZ</h1>
+      <p class="subtitle">Plan de entrenamiento · 4 semanas</p>
+    </div>
+  </header>
+
+  <!-- WARM UP -->
+  <section class="warmup-section">
+    <div class="section-label">⚡ Entrada en Calor</div>
+    <div class="warmup-grid">
+      <div class="warmup-item">
+        <span class="warmup-icon">⏱</span>
+        <div>
+          <div class="warmup-name">Plancha frontal</div>
+          <div class="warmup-detail">20 segundos</div>
+        </div>
+      </div>
+      <div class="warmup-item">
+        <span class="warmup-icon">🔄</span>
+        <div>
+          <div class="warmup-name">Lumbares cruzados</div>
+          <div class="warmup-detail">x10+10 · 4 series</div>
+        </div>
+      </div>
+      <div class="warmup-item">
+        <span class="warmup-icon">⚡</span>
+        <div>
+          <div class="warmup-name">Vitalizaciones</div>
+          <div class="warmup-detail">x6 repeticiones</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WEEK TABS -->
+  <div class="tabs-outer">
+    <div class="tabs" id="tabs">
+      <button class="tab active" data-week="0">Semana 1</button>
+      <button class="tab" data-week="1">Semana 2</button>
+      <button class="tab" data-week="2">Semana 3 🔥</button>
+      <button class="tab" data-week="3">Semana 4 ↓</button>
+    </div>
+  </div>
+
+  <!-- WEEK INFO BAR -->
+  <div class="week-bar">
+    <span class="week-title" id="week-title"></span>
+    <span class="week-desc" id="week-desc"></span>
+  </div>
+
+  <!-- DAY TABS -->
+  <div class="day-tabs-outer">
+    <div class="day-tabs">
+      <button class="day-tab active" data-day="0">Día 1</button>
+      <button class="day-tab" data-day="1">Día 2</button>
+      <button class="day-tab" data-day="2">Día 3</button>
+    </div>
+  </div>
+
+  <!-- DAY TYPE BADGE -->
+  <div class="day-type-outer">
+    <div class="day-type-badge" id="day-type-badge"></div>
+  </div>
+
+  <!-- EXERCISES — rendered by JS -->
+  <main id="main-content"></main>
+
+  <footer>
+    <p>Plan generado para <strong>Lucas Sanchez</strong> · Mesociclo 1 · Fuerza de Base</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
