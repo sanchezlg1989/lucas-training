@@ -1,100 +1,81 @@
 // ===================================================================
-// ESTRUCTURA DE DÍAS
-//  Día 1 & 3: Cuadricera · Pecho plano · Aperturas · Dorsal ancho
-//  Día 2:      Prensa · Isquios · Empuje hombros · Vuelos · Remo
+// LUCAS SANCHEZ — Fuerza de Base · Meso 2
 // ===================================================================
+
+// Entrada en calor (igual para todos los días)
+// plancha a 1 pie 15" x lado
+// lumbars con nado 8 x4
+// Vitalizaciones cruzadas x6
 
 const WEEKS = [
   {
     label: "Semana 1 — Acumulación",
     desc:  "Carga progresiva inicial. Foco en técnica y establecer pesos de trabajo.",
     days: [
-      { type: "A", pushSets: "4×6 + 1×6", pullSets: "4×6 + 1×6", circuit: "3 VUELTAS" },
-      { type: "B", pushSets: "3×6 + 2×6", pullSets: "3×6 + 2×6", circuit: "4 VUELTAS" },
-      { type: "A", pushSets: "4×6 + 2×6", pullSets: "4×6 + 2×6", circuit: "3 VUELTAS" },
+      { circuit: "3 VUELTAS" },
+      { circuit: "4 VUELTAS" },
+      { circuit: "3 VUELTAS" },
     ]
   },
   {
     label: "Semana 2 — Intensificación",
     desc:  "Aumentamos volumen del circuito. Mantener calidad técnica en superseries.",
     days: [
-      { type: "A", pushSets: "3×6 + 2×6", pullSets: "3×6 + 2×6", circuit: "4 VUELTAS" },
-      { type: "B", pushSets: "4×6 + 1×6", pullSets: "4×6 + 1×6", circuit: "5 VUELTAS" },
-      { type: "A", pushSets: "3×6 + 2×6", pullSets: "3×6 + 2×6", circuit: "4 VUELTAS" },
+      { circuit: "4 VUELTAS" },
+      { circuit: "5 VUELTAS" },
+      { circuit: "4 VUELTAS" },
     ]
   },
   {
     label: "Semana 3 — Choque 🔥",
     desc:  "Semana de choque. Máxima exigencia. Respetar la técnica ante todo.",
     days: [
-      { type: "A", pushSets: "2×6 + 3×6", pullSets: "2×6 + 3×6", circuit: "5 VUELTAS" },
-      { type: "B", pushSets: "3×6 + 2×6", pullSets: "3×6 + 2×6", circuit: "6 VUELTAS" },
-      { type: "A", pushSets: "2×6 + 3×6", pullSets: "2×6 + 3×6", circuit: "5 VUELTAS" },
+      { circuit: "5 VUELTAS" },
+      { circuit: "6 VUELTAS" },
+      { circuit: "5 VUELTAS" },
     ]
   },
   {
     label: "Semana 4 — Descarga ↓",
     desc:  "Semana de descarga. Reducir intensidad, consolidar adaptaciones.",
     days: [
-      { type: "A", pushSets: "4×6 + 1×6", pullSets: "4×6 + 1×6", circuit: "3 VUELTAS" },
-      { type: "B", pushSets: "3×6 + 2×6", pullSets: "3×6 + 2×6", circuit: "4 VUELTAS" },
-      { type: "A", pushSets: "4×6 + 2×6", pullSets: "4×6 + 2×6", circuit: "3 VUELTAS" },
+      { circuit: "3 VUELTAS" },
+      { circuit: "4 VUELTAS" },
+      { circuit: "3 VUELTAS" },
     ]
   }
 ];
 
-// Ejercicios por tipo de día
-const DAY_TYPES = {
-  A: {
-    badge: "🦵💪 Cuádriceps · Pecho · Dorsal",
-    blocks: [
-      {
-        icon: "🦵", title: "Piernas",
-        exercises: [
-          { name: "Cuadricera", tag: "Principal", accent: "legs", key: "cuad", sets: "5×6" },
-        ]
-      },
-      {
-        icon: "💪", title: "Empuje",
-        exercises: [
-          { name: "Pecho plano", tag: "Principal", accent: "push", key: "pecho", setsKey: "pushSets" },
-          { name: "Aperturas inclinado", tag: "Complementario", accent: "", key: "aper", sets: "—" },
-        ]
-      },
-      {
-        icon: "🔙", title: "Tracción",
-        exercises: [
-          { name: "Dorsal ancho", tag: "Principal", accent: "pull", key: "dorsal", setsKey: "pullSets" },
-        ]
-      }
+// Todos los días tienen los mismos ejercicios (mismo esquema de series)
+const BLOCKS = [
+  {
+    icon: "🦵", title: "Piernas",
+    exercises: [
+      { name: "Subidas al cajón // Prensa",               tag: "Superserie", accent: "legs", key: "cajon_prensa",   sets: "5×6+6 // 5×10" },
+      { name: "Sentadilla sumo suelo // Patada isquio polea", tag: "Superserie", accent: "legs", key: "sumo_isquio",    sets: "5×6 // 5×8+8"  },
     ]
   },
-  B: {
-    badge: "🏋️ Prensa · Hombros · Remo · Isquios",
-    blocks: [
-      {
-        icon: "🦵", title: "Piernas",
-        exercises: [
-          { name: "Prensa", tag: "Principal", accent: "legs", key: "prensa", sets: "5×10" },
-          { name: "Isquios máquina", tag: "Principal", accent: "", key: "isquios", sets: "5×8" },
-        ]
-      },
-      {
-        icon: "💪", title: "Empuje",
-        exercises: [
-          { name: "Empuje hombros máquina", tag: "Principal", accent: "push", key: "hombros", setsKey: "pushSets" },
-          { name: "Vuelos frontoabd", tag: "Complementario", accent: "", key: "vuelos", sets: "—" },
-        ]
-      },
-      {
-        icon: "🔙", title: "Tracción",
-        exercises: [
-          { name: "Remo máquina", tag: "Principal", accent: "pull", key: "remo", setsKey: "pullSets" },
-        ]
-      }
+  {
+    icon: "💪", title: "Empuje",
+    exercises: [
+      { name: "Pecho convergente // Landmine bimanual",   tag: "Superserie", accent: "push", key: "pecho_land",    sets: "5×6 // 5×8"    },
+      { name: "Pecho mancuerna inclinado // Arnold",       tag: "Superserie", accent: "push", key: "pecho_arnold",  sets: "4×10"           },
+    ]
+  },
+  {
+    icon: "🔙", title: "Tracción",
+    exercises: [
+      { name: "Remo sentado // Remo T",                   tag: "Superserie", accent: "pull", key: "remo",          sets: "5×8 // 5×6"    },
     ]
   }
-};
+];
+
+const CIRCUIT_ITEMS = [
+  { num: "01", name: "Bíceps + Press // Pull + Press", detail: "x8 repeticiones" },
+  { num: "02", name: "Bisagras alternas",               detail: "x8+8 repeticiones" },
+  { num: "03", name: "Tríceps sobre cabeza",            detail: "x8 repeticiones" },
+  { num: "04", name: "Vuelos frontales // Vuelos laterales", detail: "x8 repeticiones" },
+];
 
 // ===== STATE =====
 let currentWeek = 0;
@@ -102,31 +83,26 @@ let currentDay  = 0;
 
 // ===== HELPERS =====
 function storageKey(key) {
-  return `lucas_w${currentWeek}_d${currentDay}_${key}`;
+  return `lucas_m2_w${currentWeek}_d${currentDay}_${key}`;
 }
 function notesStorageKey() {
-  return `lucas_notes_w${currentWeek}_d${currentDay}`;
+  return `lucas_m2_notes_w${currentWeek}_d${currentDay}`;
 }
 
 // ===== RENDER =====
 function render() {
-  const week    = WEEKS[currentWeek];
-  const day     = week.days[currentDay];
-  const dayType = DAY_TYPES[day.type];
+  const week = WEEKS[currentWeek];
+  const day  = week.days[currentDay];
 
-  // Week bar
   document.getElementById('week-title').textContent = week.label;
   document.getElementById('week-desc').textContent  = week.desc;
+  document.getElementById('day-type-badge').textContent = "🏋️ Piernas · Pecho · Dorsal — Todos los días";
 
-  // Day badge
-  document.getElementById('day-type-badge').textContent = dayType.badge;
-
-  // Build main content
   const main = document.getElementById('main-content');
   main.innerHTML = '';
 
   // --- Exercise blocks ---
-  dayType.blocks.forEach(block => {
+  BLOCKS.forEach(block => {
     const section = document.createElement('section');
     section.className = 'block';
 
@@ -136,22 +112,19 @@ function render() {
         <span class="block-title">${block.title}</span>
       </div>
       <div class="ex-grid">
-        ${block.exercises.map(ex => {
-          const sets = ex.setsKey ? day[ex.setsKey] : ex.sets;
-          return `
+        ${block.exercises.map(ex => `
           <div class="ex-card ${ex.accent ? 'accent-' + ex.accent : ''}">
             <div class="ex-top">
               <div class="ex-name">${ex.name}</div>
               <div class="ex-tag">${ex.tag}</div>
             </div>
-            <div class="ex-sets">${sets}</div>
+            <div class="ex-sets">${ex.sets}</div>
             <div class="ex-bottom">
               <label class="weight-label">Peso (kg)</label>
               <input type="number" class="weight-input" placeholder="—"
                      data-key="${ex.key}" min="0" step="2.5" />
             </div>
-          </div>`;
-        }).join('')}
+          </div>`).join('')}
       </div>`;
 
     main.appendChild(section);
@@ -167,34 +140,14 @@ function render() {
       <span class="vueltas-badge">${day.circuit}</span>
     </div>
     <div class="circuit-grid">
-      <div class="circuit-item">
-        <span class="c-num">01</span>
-        <div>
-          <div class="c-name">Bíceps polea // Tríceps polea</div>
-          <div class="c-detail">x10 repeticiones</div>
-        </div>
-      </div>
-      <div class="circuit-item">
-        <span class="c-num">02</span>
-        <div>
-          <div class="c-name">Posición del Guerrero</div>
-          <div class="c-detail">20" + 20"</div>
-        </div>
-      </div>
-      <div class="circuit-item">
-        <span class="c-num">03</span>
-        <div>
-          <div class="c-name">Bicho muerto</div>
-          <div class="c-detail">x10 repeticiones</div>
-        </div>
-      </div>
-      <div class="circuit-item">
-        <span class="c-num">04</span>
-        <div>
-          <div class="c-name">Plancha lateral</div>
-          <div class="c-detail">15" + 15"</div>
-        </div>
-      </div>
+      ${CIRCUIT_ITEMS.map(item => `
+        <div class="circuit-item">
+          <span class="c-num">${item.num}</span>
+          <div>
+            <div class="c-name">${item.name}</div>
+            <div class="c-detail">${item.detail}</div>
+          </div>
+        </div>`).join('')}
     </div>`;
   main.appendChild(circuitSection);
 
